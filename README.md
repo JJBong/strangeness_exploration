@@ -12,9 +12,11 @@ The main requirements can be found in requirements.txt.
 
 ### Configs
 
-You need to create a config file "src/parameters/parameters.py" or "src/parameters/multi_parameters.py" refer to "src/parameters/parameters_template.py" or "src/parameters/multi_parameters_template.py". 
-You should refer to the config files at "src/parameters/algs", "src/parameters/envs" and "src/parameters/general" directories.
+You need to create a config file `src/parameters/parameters.py` or `src/parameters/multi_parameters.py` 
+    refer to `src/parameters/parameters_template.py" or "src/parameters/multi_parameters_template.py`. 
+
+You should refer to the config files at `src/parameters/algs`, `src/parameters/envs` and `src/parameters/general` directories.
 
 ### Experiments
 
-Just run the "python main.py" command.
+Just run the `python main.py` command.
