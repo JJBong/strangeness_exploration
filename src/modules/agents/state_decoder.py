@@ -9,14 +9,6 @@ class StateDecoder(nn.Module):
         self.state_shape = args.STATE_SHAPE
         self.z_embed_dim = int(args.ENCODER_HIDDEN_DIM / 4)
 
-        self.hyper_w_1 = nn.Linear(self.state_shape, self.z_embed_dim*self.n_agents)
-        self.hyper_w_final = nn.Linear(self.state_shape, self.z_embed_dim)
-
-        self.hyper_b_1 = nn.Linear(self.state_shape, self.z_embed_dim)
-        self.V = nn.Sequential(nn.Linear(self.state_shape, self.z_embed_dim),
-                               nn.ReLU(),
-                               nn.Linear(self.z_embed_dim, 1))
-
         self.decoder = nn.Sequential(
             nn.Linear(self.z_embed_dim*self.n_agents, int(args.ENCODER_HIDDEN_DIM / 2)),
             nn.ReLU(),
