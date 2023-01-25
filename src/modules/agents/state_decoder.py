@@ -9,16 +9,18 @@ class StateDecoder(nn.Module):
         self.state_shape = args.STATE_SHAPE
         self.z_embed_dim = int(args.ENCODER_HIDDEN_DIM / 4)
 
-        self.decoder = nn.Sequential(
+        self.encoder = nn.Sequential(
             nn.Linear(self.z_embed_dim*self.n_agents, int(args.ENCODER_HIDDEN_DIM / 2)),
             nn.ReLU(),
             nn.Linear(int(args.ENCODER_HIDDEN_DIM / 2), args.ENCODER_HIDDEN_DIM),
-            nn.ReLU(),
-            nn.Linear(args.ENCODER_HIDDEN_DIM, self.state_shape),
-            # nn.Sigmoid()
+            nn.ReLU()
+        )
+        self.decoder = nn.Sequential(
+            nn.Linear(args.ENCODER_HIDDEN_DIM, self.state_shape)#, nn.Sigmoid()
         )
 
     def forward(self, inputs):
         inputs = inputs.reshape(-1, self.z_embed_dim*self.n_agents)
-        decoded = self.decoder(inputs)
+        encoded = self.encoder(inputs)
+        decoded = self.decoder(encoded)
         return decoded
